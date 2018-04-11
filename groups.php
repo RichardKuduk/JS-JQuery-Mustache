@@ -4,24 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="mystyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- <script type="text/javascript" src="teams.js"></script> -->
+  <script type="text/javascript" src="groupsJS.js"></script>
   <script type="text/javascript" src="mustache.js" ></script>
-  <script>
-    var template = "<tr><td>{{Stage}}</td><td><img src=\"images/{{Code}}\" alt=\"user-avatar\" width=\"30px\" /></td><td>{{Name}}</td><td>{{OverallOdds}}</td><td>{{FIFARanking}}</td></tr>";
-
-      $(function () {
-          $.getJSON('getData.php',
-          function (teamData) {
-
-              $.each(teamData, function (i, team) {
-                  var html = Mustache.render(template,
-                  team);
-                  $('#teamsTable').append(html);
-              });
-
-          });
-      });
-  </script>
+ 
   <div id="content"></div>
 
 
@@ -42,16 +27,8 @@
   </div>
   <hr>
 
-  <table border="1" id = "teamsTable">
-  <tr>
-  <th>Group</th>
-  <th>Flag</th>
-  <th>Name</th>
-  <th>Outright</th>
-  <th>FIFA Ranking</th>
-
-  </tr>
-</table>
+ <div id="tableDiv">
+ </div>
 
 <div class="year">
     <p>Copyright &copy; <span id="footerYear"></span> Richard Kuduk - L00120064@student.lyit.ie</p>
