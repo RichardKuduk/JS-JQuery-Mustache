@@ -1,7 +1,7 @@
 <?php
   $mysql = new mysqli("localhost", "root", "", 'worldcup2018');
 
-  $query = "SELECT * FROM teams";
+  $query = "SELECT * FROM teams ORDER BY Stage,Name";
 
   $result = $mysql->query($query);
 

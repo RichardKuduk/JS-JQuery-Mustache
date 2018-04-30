@@ -13,7 +13,7 @@ while($rs[] = mysqli_fetch_assoc($result)) {
 }
 
 // for team details
-$result2 = mysqli_query($connection,"SELECT * FROM tables ORDER BY Stage");
+$result2 = mysqli_query($connection,"SELECT * FROM tables ORDER BY Pts DESC");
 $rs2 = array();
 $i=0;
 while($rs2[] = mysqli_fetch_assoc($result2)) {
@@ -36,15 +36,25 @@ while($rs4[] = mysqli_fetch_assoc($result4)) {
 // do nothing ;-)
 }
 
+// for distincts years? How many unique years is there?
+$result5 = mysqli_query($connection,"SELECT DISTINCT Stage FROM tables");
+$rs5 = array();
+$i=0;
+while($rs5[] = mysqli_fetch_assoc($result5)) {
+// do nothing ;-)
+}
+
 
 
 mysqli_close($connection);
 
 unset($rs[count($rs)-1]);  //removes a null value
 unset($rs2[count($rs2)-1]);  //removes a null value
+unset($rs3[count($rs3)-1]);  //removes a null value
 unset($rs4[count($rs4)-1]);  //removes a null value
+unset($rs5[count($rs5)-1]);  //removes a null value
 
 // print("{ \"results\":" . json_encode($rs) . "}");                                    // this returns a round number    // this returns years
-print("{ \"teams\":" . json_encode($rs) . " , \"tables\":" . json_encode($rs2) . " , \"matches\":" . json_encode($rs3) . " , \"stages\":" . json_encode($rs4) . " }");
+print("{ \"teams\":" . json_encode($rs) . " , \"tables\":" . json_encode($rs2) . " , \"matches\":" . json_encode($rs3) . " , \"stages\":" . json_encode($rs4) . " , \"uniqStage\":" . json_encode($rs5) . " }");
 
 ?>
