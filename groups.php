@@ -12,6 +12,7 @@
 
 <body>
   <?php include 'assets/header.php';?>
+  <h1>Groups Table [JQuery]</h1>
 
 
  <div id="tableDiv">

@@ -3,14 +3,15 @@ window.onload=function()
 {
 
   getData();
-
 }
 
 
 function getData()
 {
-  $.getJSON("getDatatest.php", function(result){
+  $.getJSON("php/getDatatest.php", function(result){
     response(result);
+    change();
+
 });
 
 
@@ -44,49 +45,47 @@ function response(data)
     });
     // On change event for select
     $("#stage").change(function(e){
-      change(e);
+      change();
     });
     // On change event for select
     $("#team").change(function(e){
-      change(e);
+      change();
     });
     // Assign data to globalData
     globalData = data;
 
 }
 
-function change(e){
-  var stage = $( "#stage option:selected" ).val();
-  var team = $( "#team option:selected" ).val();
+function change(){
+    var stage = $( "#stage option:selected" ).val();
+    var team = $( "#team option:selected" ).val();
 
-  var output = "";
-  // Create table template
-  output += '<table border="1" id="results" style="margin: auto;">' +
-  "<tr> <th>Date</th> <th>Time</th>  <th>Stage</th>  <th>FLAG</th> <th>Team 1</th>"+
-  "<th>1</th> <th>x</th><th>2</th><th>Team 2</th><th>FLAG</th><th>Prediction</th></tr>";
+    // UnderScore function to fillter data
+    var fillteredData = _.filter(globalData.matches, function(element){
+         if ((stage == element.Stage || stage == "All") &&
+          (team == element.Team1 || team == element.Team2 || team == "All")) {
+            // Add new field to the object
+            // Named flag1 and flag2
+            // That adds filltered image code from globalData
+            element.flag1  = _.find(globalData.teams, function(e){
+              if(element.Team1 == e.Name)
+                return  e.Code;
+            }).Code;
 
-  $.each(globalData.matches, function (i, field) {
-    if((stage == field.Stage || stage == "All") && (team == field.Team1 || team == field.Team2 || team == "All"))
-    {
-      // Start creating the row for the team
-      output += '<tr>';
-      output += "<td>" + field.Date + "</td>";
-      output += "<td>" + field.Time + "</td>";
-      output += "<td>" + field.Stage + "</td>";
-      output += "<td>" + "FLAG" + "</td>";
-      output += "<td>" + field.Team1 + "</td>";
-      output += "<td>" + field.Team1Win + "</td>";
-      output += "<td>" + field.Draw + "</td>";
-      output += "<td>" + field.Team2Win + "</td>";
-      output += "<td>" + field.Team2 + "</td>";
-      output += "<td>" + "FLAG" + "</td>";
-      output += "<td>" + field.Prediction + "</td>";
-      output += '</tr>';
-    }
-  });
+            element.flag2  = _.find(globalData.teams, function(e){
+              if(element.Team2 == e.Name)
+                return  e.Code;
+            }).Code;
+         return element;
+       }
+     });
 
-  output += "</table>";
 
-  $('#tableDiv').html($(output));
+
+     // Mustache to display filltered data
+    var template = $("#template").html();
+    var html = Mustache.render(template,{"matches": fillteredData});
+    $('#tableDiv').html(html);
+
 
 }

@@ -1,6 +1,6 @@
 $('document').ready(function() {
 
-	$.getJSON('getTeams.php',function(data)
+	$.getJSON('php/getTeams.php',function(data)
 	{
 
 		//console.log(data);

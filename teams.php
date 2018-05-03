@@ -30,6 +30,7 @@
 
 <body>
   <?php include 'assets/header.php';?>
+  <h1>Team Table [JQuery / Mustache]</h1>
 
   <div id="table">
 

@@ -33,7 +33,14 @@ td
    padding: 6px;
    color: #6D929B;
 }
-
+#visualTable{
+  text-align: center;
+  margin: auto;
+  border: none;
+}
+#visualTable td{
+  border: none;
+}
 .button
 {
    font: bold 15px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
@@ -73,5 +80,31 @@ td
 
   flex: 1;
   padding: 20px;
+}
 
+.oddsColorGreen{
+  background-color: #9dff84;
+  width: 100px;
+
+}
+.oddsColorGrey{
+  background-color: #e3e5e3;
+  width: 100px;
+
+
+}
+.updateBtn{
+  background-color: lightblue;
+}
+.team1Field{
+  text-align: right;
+}
+.drawField{
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+
+}
+.team2Field{
+  text-align: left;
 }

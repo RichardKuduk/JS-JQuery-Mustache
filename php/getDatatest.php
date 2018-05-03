@@ -21,7 +21,7 @@ while($rs2[] = mysqli_fetch_assoc($result2)) {
 }
 
 // query for current round
-$result3 = mysqli_query($connection,"SELECT * FROM matches");
+$result3 = mysqli_query($connection,"SELECT * FROM matches ORDER BY Date,Time");
 $rs3 = array();
 $i=0;
 while($rs3[] = mysqli_fetch_assoc($result3)) {

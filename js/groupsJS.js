@@ -4,7 +4,7 @@ window.onload=function()
   var output = "";
 
     // Get data from php file
-    $.getJSON("getDatatest.php", function(result){
+    $.getJSON("php/getDatatest.php", function(result){
 
       // Get the unique stages from db
       $.each(result.uniqStage, function(i, group){
